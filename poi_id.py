@@ -30,10 +30,10 @@ from sklearn.decomposition import RandomizedPCA
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
 
-features_list = ['poi','salary', 'total_payments', 'bonus', 
-                 'deferred_income', 'total_stock_value', 
+features_list = ['poi','salary', 'total_payments', 'bonus', 'director_fees',
+                 'deferred_income','other', 'total_stock_value', 'deferral_payments',
                  'expenses', 'exercised_stock_options', 'long_term_incentive', 
-                 'restricted_stock', 'to_messages', 'from_messages','director_fees',
+                 'restricted_stock', 'to_messages', 'from_messages',
                  'from_poi_to_this_person', 'from_this_person_to_poi', 
                  'shared_receipt_with_poi'] # You will need to use more features
 
@@ -51,10 +51,10 @@ data_dict.pop("BHATNAGAR SANJAY")
 data_dict.pop("MARTIN AMANDA K")
 data_dict.pop("PAI LOU L")
 data_dict.pop("WHITE JR THOMAS E")
-data_dict.pop("KAMINSKI WINCENTY J")
+#data_dict.pop("KAMINSKI WINCENTY J")
 data_dict.pop("FREVERT MARK A")
 data_dict.pop("LAVORATO JOHN J")
-
+#data_dict.pop("THE TRAVEL AGENCY IN THE PARK")
 ### Task 3: Create new feature(s)
 for name in data_dict:
     if data_dict[name]['from_this_person_to_poi'] != 'NaN' and data_dict[name]['from_messages'] != 'NaN':
@@ -84,14 +84,14 @@ features_train, features_test, labels_train, labels_test = cross_validation.trai
 #svr = svm.SVC()
 
 def make_pred_dt(data_dict, features):
-    clf = tree.DecisionTreeClassifier(min_samples_split=10)  
+    #clf = tree.DecisionTreeClassifier(min_samples_split=10)  
     #clf = SVC(C=1000, cache_size=200, class_weight=None, coef0=0.0, degree=3,\
     #gamma=0.8, kernel='rbf', max_iter=-1, probability=False,\
     #random_state=None, shrinking=True, tol=0.001, verbose=False)
     #clf = SVC(C=1000, kernel='rbf')
     #clf = grid_search.GridSearchCV(svr, parameters)    
     #clf = KMeans(n_clusters=2) 
-    #clf = GaussianNB() 
+    clf = GaussianNB() 
     features = ["poi"] + features
     return test_classifier(clf, data_dict, features)
 

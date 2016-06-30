@@ -33,7 +33,7 @@ import numpy as np
 #                 'shared_receipt_with_poi'] # You will need to use more features
 
 #new features
-features_list = ['poi', 'salary', 'total_payments', 'bonus', 'director_fees',
+features_list = ['poi', 'salary', 'total_payments', 'bonus', 'director_fees', 
                  'deferred_income', 'total_stock_value', 'restricted_stock_deferred',
                  'expenses', 'exercised_stock_options', 'long_term_incentive', 
                  'restricted_stock', 'from_messages', 'to_messages','deferral_payments',
@@ -166,17 +166,17 @@ def detect_outliers(pois_features_threshold, non_pois_features_threshold):
         for feature in data_dict[person]:
             if feature in features_list and feature != 'poi':
                 if data_dict[person]['poi'] == True: 
-                    if data_dict[person][feature] != 'NaN' and data_dict[person][feature] > pois_features_threshold[feature]:
+                    if data_dict[person][feature] != 'NaN' and float(data_dict[person][feature]) > pois_features_threshold[feature]:
                         if outliers.has_key(person):
                             outliers[person][feature] = [pois_features_threshold[feature],data_dict[person][feature],'poi']
                         else:
                             outliers[person] = {feature:[pois_features_threshold[feature],data_dict[person][feature],'poi']}
                 else:
-                    if data_dict[person][feature] != 'NaN' and data_dict[person][feature] > non_pois_features_threshold[feature]:
+                    if data_dict[person][feature] != 'NaN' and float(data_dict[person][feature]) > non_pois_features_threshold[feature]:
                         if outliers.has_key(person):
-                            outliers[person][feature] = [pois_features_threshold[feature],data_dict[person][feature],'non_poi']
+                            outliers[person][feature] = [non_pois_features_threshold[feature],data_dict[person][feature],'non_poi']
                         else:
-                            outliers[person] = {feature:[pois_features_threshold[feature],data_dict[person][feature],'non_poi']}
+                            outliers[person] = {feature:[non_pois_features_threshold[feature],data_dict[person][feature],'non_poi']}
     return outliers
 
 pois_features_threshold, non_pois_features_threshold = get_thresholds(5.6)
