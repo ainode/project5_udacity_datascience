@@ -31,7 +31,7 @@ from sklearn.decomposition import RandomizedPCA
 ### The first feature must be "poi".
 
 features_list = ['poi','salary', 'total_payments', 'bonus', 'director_fees',
-                 'deferred_income','other', 'total_stock_value', 'deferral_payments',
+                 'deferred_income','total_stock_value', 'deferral_payments',
                  'expenses', 'exercised_stock_options', 'long_term_incentive', 
                  'restricted_stock', 'to_messages', 'from_messages',
                  'from_poi_to_this_person', 'from_this_person_to_poi', 
@@ -79,7 +79,7 @@ scaler = scaler.fit(features)
 features = scaler.transform(features)
 
 #spliting data using crossvalidation's train_test_split function
-features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(features, labels, test_size=0.3, random_state=42)
+features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(features, labels,test_size=0.3, random_state=42)
 #parameters = {'kernel':('linear', 'rbf'), 'C':[1, 10, 100, 1000, 10000, 100000], 'gamma':[0.1,1,10,100,1000]}
 #svr = svm.SVC()
 
@@ -192,8 +192,8 @@ from sklearn.naive_bayes import GaussianNB
 #clf = SVC(C=100000, cache_size=200, class_weight=None, coef0=0.0, degree=3,\
 #gamma=0.8, kernel='rbf', max_iter=-1, probability=False,\
 #random_state=None, shrinking=True, tol=0.001, verbose=False)
-#clf = GaussianNB()
-clf = tree.DecisionTreeClassifier(min_samples_split=10)
+clf = GaussianNB()
+#clf = tree.DecisionTreeClassifier(min_samples_split=10)
 #clf = KMeans(n_clusters=2)
 #clf = SVMAccuracyGrid()
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
