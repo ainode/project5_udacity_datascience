@@ -84,14 +84,14 @@ features_train, features_test, labels_train, labels_test = cross_validation.trai
 #svr = svm.SVC()
 
 def make_pred_dt(data_dict, features):
-    #clf = tree.DecisionTreeClassifier(min_samples_split=10)  
+    clf = tree.DecisionTreeClassifier(min_samples_split=10)  
     #clf = SVC(C=1000, cache_size=200, class_weight=None, coef0=0.0, degree=3,\
     #gamma=0.8, kernel='rbf', max_iter=-1, probability=False,\
     #random_state=None, shrinking=True, tol=0.001, verbose=False)
     #clf = SVC(C=1000, kernel='rbf')
     #clf = grid_search.GridSearchCV(svr, parameters)    
     #clf = KMeans(n_clusters=2) 
-    clf = GaussianNB() 
+    #clf = GaussianNB() 
     features = ["poi"] + features
     return test_classifier(clf, data_dict, features)
 
@@ -192,8 +192,8 @@ from sklearn.naive_bayes import GaussianNB
 #clf = SVC(C=100000, cache_size=200, class_weight=None, coef0=0.0, degree=3,\
 #gamma=0.8, kernel='rbf', max_iter=-1, probability=False,\
 #random_state=None, shrinking=True, tol=0.001, verbose=False)
-clf = GaussianNB()
-#clf = tree.DecisionTreeClassifier(min_samples_split=10)
+#clf = GaussianNB()
+clf = tree.DecisionTreeClassifier(min_samples_split=10)
 #clf = KMeans(n_clusters=2)
 #clf = SVMAccuracyGrid()
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
