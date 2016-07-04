@@ -47,14 +47,15 @@ print "Number of data points: ",len(data_dict)
 ###remove outliers
 
 data_dict.pop("TOTAL")
-data_dict.pop("BHATNAGAR SANJAY")
-data_dict.pop("MARTIN AMANDA K")
-data_dict.pop("PAI LOU L")
-data_dict.pop("WHITE JR THOMAS E")
+#data_dict.pop("BHATNAGAR SANJAY")
+#data_dict.pop("MARTIN AMANDA K")
+#data_dict.pop("PAI LOU L")
+#data_dict.pop("WHITE JR THOMAS E")
 #data_dict.pop("KAMINSKI WINCENTY J")
-data_dict.pop("FREVERT MARK A")
-data_dict.pop("LAVORATO JOHN J")
-#data_dict.pop("THE TRAVEL AGENCY IN THE PARK")
+#data_dict.pop("FREVERT MARK A")
+#data_dict.pop("LAVORATO JOHN J")
+data_dict.pop("THE TRAVEL AGENCY IN THE PARK")
+data_dict.pop("LAY KENNETH L")
 ### Task 3: Create new feature(s)
 for name in data_dict:
     if data_dict[name]['from_this_person_to_poi'] != 'NaN' and data_dict[name]['from_messages'] != 'NaN':
@@ -105,7 +106,7 @@ def choose_features(data_dict,features_list):
         features_list_selected=[features_list[i+1] for i in selector.get_support(indices=True)] 
         print features_list_selected       
         precision, recall = make_pred_dt(data_dict, features_list_selected)
-        if recall>0.4 and precision>0.4:
+        if recall>0.3 and precision>0.3:
             if (recall+ precision) > best_precision_recall:
                 best_precision_recall = recall+precision
                 best_results = (precision,recall,features_list_selected,selector.scores_[selector.get_support(indices=True)])
